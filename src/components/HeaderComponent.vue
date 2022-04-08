@@ -1,21 +1,30 @@
 <template>
-    <div class="row align-items-center">   
-        LOGO
+    <div class="container-fluid">
+        
+        <div class="row align-items-center">
+            {{ logo }}
+        </div>
+
     </div>
 </template>
 
 <script>
 export default {
+    name:'HeaderComponent',
+    props:{
+        logo: String,
+    }
 
 }
 </script>
 
-
 <style lang="scss" scoped>
-@import '@/style/variables';
+    @import '../style/variables';
+    
 
     div{
         color: #fff;
-        height: 80px;
+        background-color: $bg-header-color;
+        height:80px;
     }
 </style>

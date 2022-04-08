@@ -1,14 +1,13 @@
 <template>
-  <div id="app" class="container-fluid">
-    <HeaderComponent id="header" class=""/>
-    <MainComponent id="main"/>
-    
+  <div id="app" class="h-100">
+    <HeaderComponent logo="LOGO" />
+    <MainComponent api="https://flynn.boolean.careers/exercises/api/array/music" />
   </div>
 </template>
 
 <script>
-import HeaderComponent from './components/HeaderComponent.vue'
-import MainComponent from './components/MainComponent.vue'
+import HeaderComponent from '@/components/HeaderComponent.vue';
+import MainComponent from '@/components/MainComponent.vue';
 
 export default {
   name: 'App',
@@ -20,18 +19,12 @@ export default {
 </script>
 
 <style lang="scss">
-  @import 'bootstrap/scss/bootstrap';
-  @import '@/style/variables';
-
+@import './style/general';
+@import './style/variables';
 
 #app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  #header{
-    background-color: $bg-header-color;
-    
-  }
-  #main{}
+  -moz-osx-font-smoothing: grayscale;  
 }
 </style>
