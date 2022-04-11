@@ -1,5 +1,5 @@
 <template>
-  <div class="diskcard col-2 row ">
+<div class="diskcard col-2 row" >
       <img :src="poster" :alt="title" class="w-100">
       <h5 class="">{{ title }}</h5>
       <span>{{ author }}</span>

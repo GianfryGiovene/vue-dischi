@@ -51,15 +51,18 @@ export default {
     },
 
     computed:{
+        
         isLoading(){
             return this.disks.length === 0;
         },
+        
         filteredGenre(){
             return this.disks.filter(item=> item.genre.toLowerCase().includes(this.searchThisValue.toLowerCase()))
         }
     },
 
     methods:{
+        // acquisizione api
         loadData(){
             axios.get(this.api).then(
                 response=>{                
@@ -74,11 +77,11 @@ export default {
         }, 
 
         filterByGenre(searchValue){
-            if(searchValue !== 'all'){
-            this.searchThisValue = searchValue;
-            }
+            if(!searchValue !== 'all'){  
+                this.searchThisValue = searchValue;
+            }    
         },
-
+        // funzione per creare array genere senza duplicati
         genreNoDuplicateArrayGenerator(){
             this.disks.forEach(element => {
                 this.genreArray.push(element.genre) ;             
