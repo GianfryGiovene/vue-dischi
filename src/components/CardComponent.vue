@@ -11,10 +11,12 @@
 export default {
 name:'CardComponent',
 props:{
+    genre: String,
     author: String,
     poster: String,
     title: String,
     year: String,
+    value: String,
 }
 }
 </script>

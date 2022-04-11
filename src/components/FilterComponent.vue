@@ -1,7 +1,7 @@
 <template>
   <select @change="getOption($event)" name="" id="">
       <option value="all">All</option>
-      <option :key="index" v-for="(disk,index) in gArray" :value="disk.genre">{{ disk.genre }}</option>
+      <option :key="index" v-for="(genre,index) in gArray" :value="genre">{{ genre }}</option>
   </select>
 </template>
 
@@ -11,18 +11,20 @@ export default {
 
     data(){
         return{
-        optionValue:'all'
+            genreValue:'all',   
         }
     },
     props:{
-        gArray :[]
+        gArray: Array,
+        
     },
 
     methods:{
         getOption(e){
-            this.optionValue = e.target.value;
-            this.$emit('search', this.optionValue);
-        }
+            this.genreValue = e.target.value;
+            this.$emit('search', this.genreValue);
+        },
+        
     }
 
 }

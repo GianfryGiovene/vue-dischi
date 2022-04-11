@@ -1,14 +1,16 @@
 <template>
     <div class="container-fluid">
-        <div v-if="disks.length > 0" class="row justify-content-center align-items-center flex-wrap gap-3 col-8 offset-2">
-            <FilterComponent :gArray="disks" @search="filterByGenre"/>
+        <div v-if="!isLoading" class="row justify-content-center align-items-center flex-wrap gap-3 col-8 offset-2">
+            <FilterComponent :gArray="genreNoDuplicateArray" @search="filterByGenre"/>
             <CardComponent 
             :key="index" 
-            v-for="(disk,index) in disks" 
+            v-for="(disk,index) in filteredGenre" 
             :author=  disk.author 
             :poster= disk.poster 
             :title= disk.title 
-            :year= disk.year  />
+            :year= disk.year
+            :genre= disk.genre
+            :value= searchThisValue  />
         </div>
         <div v-else>
             loading
@@ -30,7 +32,9 @@ export default {
     data(){
         return{
             disks: [],
-            selectValue: ''
+            searchThisValue: '',
+            genreArray: [],
+            genreNoDuplicateArray: [],
             
         }
     },
@@ -40,23 +44,50 @@ export default {
     },
     mounted(){
         this.loadData();
+        this.genreNoDuplicateArrayGenerator()
     },
-    
-    computed:{},
+    created: function(){
+        
+    },
+
+    computed:{
+        isLoading(){
+            return this.disks.length === 0;
+        },
+        filteredGenre(){
+            return this.disks.filter(item=> item.genre.toLowerCase().includes(this.searchThisValue.toLowerCase()))
+        }
+    },
+
     methods:{
         loadData(){
             axios.get(this.api).then(
                 response=>{                
                     if(response.status === 200){
                         console.log('response',response.data.response);
-                        this.disks = response.data.response;
+                        this.disks = response.data.response; 
+                        this.genreNoDuplicateArrayGenerator()
                     }
                 }
             ).catch(error=>console.error('err',error))
+            
         }, 
+
         filterByGenre(searchValue){
-            console.log('sono qui', searchValue)
-        }        
+            if(searchValue !== 'all'){
+            this.searchThisValue = searchValue;
+            }
+        },
+
+        genreNoDuplicateArrayGenerator(){
+            this.disks.forEach(element => {
+                this.genreArray.push(element.genre) ;             
+            });  
+            this.genreNoDuplicateArray=[...new Set(this.genreArray)];
+            console.log('patate',this.genreNoDuplicateArray);
+        }
+        
+        
     }
 }
 </script>
