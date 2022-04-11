@@ -43,11 +43,8 @@ export default {
                     }
                 }
             ).catch(error=>console.error('err',error))
-            
         }
-    },
-
-
+    }
 }
 </script>
 
@@ -56,6 +53,7 @@ export default {
 
     .container-fluid{
         background-color: $bg-main-color;
+        height: 90vh;
 
         & > div{   
             padding: 40px 0;

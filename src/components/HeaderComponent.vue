@@ -9,6 +9,8 @@
 </template>
 
 <script>
+
+
 export default {
     name:'HeaderComponent',
     props:{
@@ -25,6 +27,6 @@ export default {
     div{
         color: #fff;
         background-color: $bg-header-color;
-        height:80px;
+        height:10vh;
     }
 </style>
